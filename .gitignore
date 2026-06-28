@@ -39,3 +39,11 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# local logs and binaries
+logcat.txt
+react_logs.txt
+AAB/
+*.aab
+*.txt
+

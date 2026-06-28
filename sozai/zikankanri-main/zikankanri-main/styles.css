@@ -1,0 +1,204 @@
+:root {
+  --bg-color: #121212;
+  --surface-color: #1E1E1E;
+  --primary-color: #BB86FC;
+  --primary-variant: #3700B3;
+  --secondary-color: #03DAC6;
+  --text-primary: #FFFFFF;
+  --text-secondary: #B0B0B0;
+  --error-color: #CF6679;
+  --border-radius: 12px;
+  --spacing-unit: 8px;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  margin-bottom: var(--spacing-unit);
+}
+
+h1 {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 16px;
+}
+
+/* Layout */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  padding-bottom: 80px;
+  /* Space for FAB or footer */
+}
+
+/* Cards */
+.card {
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: var(--box-shadow);
+  transition: transform 0.2s ease;
+}
+
+.card:active {
+  transform: scale(0.99);
+}
+
+/* Forms & Inputs */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  background-color: #2C2C2C;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  color-scheme: dark;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid var(--primary-color);
+  border-color: transparent;
+}
+
+label {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #000;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn:active {
+  opacity: 0.8;
+}
+
+/* Utility Classes */
+.flex-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* List Items */
+.log-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #333;
+}
+
+.log-item:last-child {
+  border-bottom: none;
+}
+
+.time-badge {
+  background-color: #333;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+/* Sliders for Weight */
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+/* Tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tag-chip {
+  background-color: #2C2C2C;
+  border: 1px solid #444;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.tag-chip.selected {
+  background-color: var(--primary-color);
+  color: #000;
+  border-color: var(--primary-color);
+}
+
+/* Pie Chart */
+.pie-chart-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.pie-chart {
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+}

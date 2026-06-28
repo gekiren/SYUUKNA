@@ -1,17 +1,19 @@
 {
   "expo": {
-    "name": "temp-project",
-    "slug": "temp-project",
-    "version": "1.0.0",
+    "name": "習慣記録",
+    "slug": "syuukan-kiroku",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "package": "syuukan_kiroku_com.example.myapp",
+      "versionCode": 2,
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#1C1C1E",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -19,6 +21,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c9ee64c1-f4c5-4f00-9d32-36c70faae941"
+      }
+    },
+    "owner": "gekirennomad",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c9ee64c1-f4c5-4f00-9d32-36c70faae941"
     }
   }
 }

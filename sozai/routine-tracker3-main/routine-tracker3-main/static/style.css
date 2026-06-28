@@ -1,0 +1,158 @@
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#app {
+    width: 100%;
+    max-width: 400px;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+h1,
+h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.routine-card {
+    background: #333;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.routine-card:hover {
+    background: #444;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+#timer {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 30px 0;
+    color: #51cf66;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.result-item {
+    background: #2c2c2c;
+
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    text-align: left;
+    font-size: 14px;
+}
+
+/* モーダル用スタイル */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    text-align: left;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.task-input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.task-input-row input {
+    background: #333;
+    border: 1px solid #444;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.task-name-input {
+    flex-grow: 2;
+}
+
+.task-time-input-min,
+.task-time-input-sec {
+    width: 60px;
+}
+
+input[type="number"] {
+    background: #333;
+    border: 1px solid #444;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.remove-task-btn {
+    background: #ff6b6b;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    margin-top: 0;
+}
+
+.icon-btn {
+    padding: 5px 10px;
+    margin: 0;
+    width: auto;
+    font-size: 14px;
+    background: #444;
+}
+
+.delete-btn {
+    background: #c92a2a;
+}

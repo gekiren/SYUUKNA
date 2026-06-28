@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>時間内訳管理</title>
+    <meta name="theme-color" content="#121212">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+    <header>
+        <h1>Daily Tracker</h1>
+        <div style="text-align: center; margin-bottom: 16px;">
+            <input type="date" id="current-date"
+                style="width: auto; padding: 8px; font-size: 1rem; color-scheme: dark;">
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Input Section -->
+        <section class="card" id="input-section">
+            <div class="flex-row justify-between" style="margin-bottom: 12px;">
+                <h2>新しい活動</h2>
+                <button id="toggle-simultaneous" class="btn btn-secondary"
+                    style="width: auto; padding: 6px 12px; font-size: 0.8rem;">
+                    同時進行モード: <span id="simultaneous-status">OFF</span>
+                </button>
+            </div>
+
+            <!-- Single Mode Input -->
+            <div id="single-mode-inputs">
+                <label>活動内容</label>
+
+                <!-- Toggle between Manual and List -->
+                <div class="tags" id="quick-list">
+                    <!-- Javascript will populate this -->
+                    <span class="tag-chip" data-value="睡眠">睡眠</span>
+                    <span class="tag-chip" data-value="仕事">仕事</span>
+                    <span class="tag-chip" data-value="食事">食事</span>
+                    <span class="tag-chip" data-value="移動">移動</span>
+                    <span class="tag-chip" data-value="休憩">休憩</span>
+                </div>
+
+                <input type="text" id="activity-name" placeholder="内容を入力または上から選択">
+            </div>
+
+            <!-- Simultaneous Mode Inputs (Hidden by default) -->
+            <div id="simultaneous-mode-inputs" class="hidden">
+                <label>同時進行する活動を追加</label>
+                <div id="simultaneous-list">
+                    <!-- Javascript will add rows here -->
+                    <div class="simultaneous-row flex-row">
+                        <input type="text" placeholder="活動A" class="sim-name">
+                        <input type="number" placeholder="%" class="sim-percent" value="50">
+                    </div>
+                    <div class="simultaneous-row flex-row">
+                        <input type="text" placeholder="活動B" class="sim-name">
+                        <input type="number" placeholder="%" class="sim-percent" value="50">
+                    </div>
+                </div>
+                <button id="add-simultaneous-row" class="btn btn-secondary" style="margin-top: 8px;">+ 活動を追加</button>
+            </div>
+
+            <!-- Time Input -->
+            <div style="margin-top: 16px;">
+                <label>時間</label>
+                <div class="flex-row">
+                    <input type="time" id="start-time">
+                    <span>~</span>
+                    <input type="time" id="end-time">
+                </div>
+                <div class="flex-row" style="margin-top:8px;">
+                    <button class="btn btn-secondary" id="set-now-start">現在時刻を開始に</button>
+                    <button class="btn btn-secondary" id="set-now-end">現在時刻を終了に</button>
+                </div>
+            </div>
+
+            <button id="save-btn" class="btn btn-primary" style="margin-top: 24px;">記録する</button>
+        </section>
+
+        <!-- Templates Section -->
+        <section class="card">
+            <div class="flex-row justify-between">
+                <h3>テンプレート</h3>
+                <button id="save-template-btn" class="btn btn-secondary"
+                    style="width:auto; font-size: 0.8rem;">今日の記録を保存</button>
+            </div>
+            <div id="template-list" class="tags">
+                <!-- Javascript will populate -->
+            </div>
+        </section>
+
+        <!-- Log List -->
+        <section class="card">
+            <h3>今日の記録</h3>
+            <div id="log-list">
+                <!-- Javascript will populate this -->
+                <div style="text-align:center; color: var(--text-secondary); padding: 20px;">
+                    記録はまだありません
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <section class="card">
+            <div class="flex-row justify-between">
+                <h3>今日の集計</h3>
+                <button id="export-md-btn" class="btn btn-secondary"
+                    style="width: auto; font-size: 0.8rem; padding: 4px 12px;">MD出力</button>
+            </div>
+            <div class="pie-chart-container">
+                <div id="summary-pie-chart" class="pie-chart"></div>
+            </div>
+            <div id="summary-list">
+                <!-- Javascript will populate -->
+            </div>
+        </section>
+
+        <!-- Export/Clear -->
+        <section style="margin-top: 20px; text-align: center;">
+            <button id="clear-day-btn"
+                style="background:none; border:none; color: var(--error-color); text-decoration: underline; cursor: pointer;">
+                今日のデータをリセット
+            </button>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
