@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
-import { Droplet, CheckSquare, Activity, Clock, Award } from 'lucide-react-native';
+import { StyleSheet, Text, View, ScrollView, Dimensions, TouchableOpacity, Alert, Linking } from 'react-native';
+import { Droplet, CheckSquare, Activity, Clock, Award, Sparkles } from 'lucide-react-native';
+import * as Clipboard from 'expo-clipboard';
+import { formatGeminiPrompt } from '../utils/gemini';
 
 const { width } = Dimensions.get('window');
 
@@ -14,6 +16,28 @@ export default function Dashboard({ summary, navigation }) {
   }
 
   const { habits, water, routine, zikan, totalZikanMinutes, todayStr } = summary;
+
+  const handleGeminiPress = async () => {
+    try {
+      const promptText = formatGeminiPrompt(summary);
+      await Clipboard.setStringAsync(promptText);
+      Alert.alert(
+        'コピー完了',
+        '本日のデータをクリップボードにコピーしました！\n\nブラウザでGeminiを開きますので、入力欄に貼り付けて（ペーストして）送信してください。',
+        [
+          {
+            text: 'Geminiを開く',
+            onPress: () => {
+              Linking.openURL('https://gemini.google.com/');
+            }
+          }
+        ]
+      );
+    } catch (e) {
+      console.error('Failed to copy to clipboard or open URL:', e);
+      Alert.alert('エラー', 'コピーまたはブラウザの起動に失敗しました。');
+    }
+  };
 
   // 全体的な本日の進捗スコア (習慣ログ＋ルーティン＋水分) の平均パーセンテージを計算
   const habitCompletionCount = habits.filter(h => h.count > 0).length;
@@ -90,6 +114,23 @@ export default function Dashboard({ summary, navigation }) {
           </View>
           <Text style={styles.progressPercent}>{Math.round(routine.progress * 100)}% 完了</Text>
         </View>
+      </View>
+
+      {/* Gemini分析カード */}
+      <View style={styles.geminiCard}>
+        <View style={styles.geminiHeader}>
+          <View style={styles.geminiTitleRow}>
+            <Sparkles size={22} color="#0A84FF" />
+            <Text style={styles.geminiTitle}>Geminiで本日の記録を分析</Text>
+          </View>
+          <Text style={styles.geminiDescription}>
+            本日の進捗データを分析用プロンプトに整形してコピーし、ブラウザでWeb版Geminiを起動します。貼り付けるだけで簡単に今日の分析やアドバイスを受け取れます。
+          </Text>
+        </View>
+        <TouchableOpacity style={styles.geminiButton} onPress={handleGeminiPress}>
+          <Sparkles size={16} color="#FFFFFF" style={{ marginRight: 8 }} />
+          <Text style={styles.geminiButtonText}>コピーしてGeminiを開く</Text>
+        </TouchableOpacity>
       </View>
 
       {/* 習慣カウンター */}
@@ -374,5 +415,46 @@ const styles = StyleSheet.create({
   },
   textSecondary: {
     color: '#8E8E93',
+  },
+  geminiCard: {
+    backgroundColor: '#1C1C1E',
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#2C2C2E',
+  },
+  geminiHeader: {
+    marginBottom: 16,
+  },
+  geminiTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  geminiTitle: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 8,
+  },
+  geminiDescription: {
+    color: '#AEAEB2',
+    fontSize: 13,
+    lineHeight: 18,
+    marginTop: 4,
+  },
+  geminiButton: {
+    backgroundColor: '#0A84FF',
+    borderRadius: 12,
+    paddingVertical: 12,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  geminiButtonText: {
+    color: '#FFFFFF',
+    fontSize: 15,
+    fontWeight: 'bold',
   },
 });
