@@ -45,5 +45,6 @@ logcat.txt
 react_logs.txt
 AAB/
 *.aab
+*.apk
 *.txt
 
