@@ -79,6 +79,12 @@ export default function App() {
   // EAS Update (OTA) のチェックと通知
   useEffect(() => {
     async function checkUpdates() {
+      // 開発モード（__DEV__）の場合はチェックをスキップする
+      if (__DEV__) {
+        console.log("Skipping update check in development mode.");
+        return;
+      }
+
       if (!Updates.isEnabled) {
         console.log("Expo Updates is not enabled.");
         return;
@@ -103,7 +109,8 @@ export default function App() {
                       [{ text: "OK", onPress: () => Updates.reloadAsync() }]
                     );
                   } catch (e) {
-                    Alert.alert("エラー", "ダウンロードに失敗しました: " + e.message);
+                    console.error("Failed to download update:", e);
+                    Alert.alert("エラー", "アップデートのダウンロードに失敗しました。");
                   }
                 }
               },
@@ -111,11 +118,12 @@ export default function App() {
             ]
           );
         } else {
-          Alert.alert("アップデート確認", "アプリは最新の状態です。");
+          // 起動時の自動チェックなので、サイレントに完了させます
+          console.log("App is up-to-date.");
         }
       } catch (e) {
-        console.log("Error checking for updates:", e);
-        Alert.alert("アップデート確認エラー", e.message);
+        // ネットワーク切断やローカルテストによるエラーはサイレントに処理し、ログ出力のみにします
+        console.warn("Error checking for updates silently:", e);
       }
     }
 
